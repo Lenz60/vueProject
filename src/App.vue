@@ -2,20 +2,42 @@
 import HelloWorld from './components/HelloWorld.vue'
 </script>
 
+<script>
+import $ from 'jquery'
+export default {
+  name: 'App',
+  data(){
+    return{
+      title: 'This is Vue',
+      foo: 'This is text from vue'
+    }
+  },
+  methods: {
+    handleClick(){
+      // console.log(this.$refs.name)
+      this.$refs.name.classList.add('active')
+      if(this.$refs.name.classList.contains('active')){
+        console.log(document.getElementById("Input").value)
+      }
+    },
+    handleReset(){
+      $("input:text").val("")
+    }
+  }
+}
+</script>
+
 <template>
-  <div class="flex flex-col justify-center items-center">
-    <div>
-      <a href="https://vitejs.dev" target="_blank">
-        <img src="/vite.svg" class="logo" alt="Vite logo" />
-      </a>
-      <a href="https://vuejs.org/" target="_blank">
-        <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-      </a>
+  <div class="flex flex-col items-center justify-center">
+    <h1>{{ title }}</h1>
+    <div class="flex">
+      <input id="Input" class="border border-black rounded-md" type="text" ref="name">
+      <button class="ml-4 text-sm bg-green-700 p-2 rounded-md hover:bg-green-600 text-white" @click="handleClick">Click me</button>
+      <button class="ml-4 text-sm bg-red-700 p-2 rounded-md hover:bg-red-600 text-white" @click="handleReset">Reset</button>
+      
     </div>
-    <div class="pl-5">
-      <p>Значимость этих проблем настолько очевидна, что курс на социально-ориентированный национальный проект требует определения и уточнения прогресса профессионального общества.</p>
-    </div>
-    <HelloWorld msg="Vite + Vue" />
+
+
   </div>
 </template>
 
