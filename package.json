@@ -1,23 +1,30 @@
 {
-  "name": "modal-project",
-  "version": "0.0.0",
+  "name": "atlas-html",
+  "version": "2.0.0",
+  "author": "Red Pixel Themes",
   "private": true,
   "scripts": {
-    "build": "vite build",
-    "dev": "vite",
-    "preview": "vite preview"
+    "css": "postcss assets/styles/main.css -o assets/styles/main.min.css --verbose",
+    "server-reload": "browser-sync start --config './browser-sync-config.js'",
+    "develop": "concurrently 'npm:css -- --watch' 'npm:server-reload'",
+    "build": "npm run css -- --env 'production'",
+    "format": "npx prettier ./**/*.html"
   },
+  "browserslist": [
+    "last 2 versions",
+    "> 1%"
+  ],
   "dependencies": {
-    "core-js": "^3.8.3",
-    "vue": "^3.2.47"
-  },
-  "devDependencies": {
-    "@vitejs/plugin-vue": "^4.1.0",
-    "@vue/cli-plugin-babel": "~5.0.0",
-    "autoprefixer": "^10.4.14",
-    "postcss": "^8.4.23",
-    "tailwindcss": "^3.3.2",
-    "vite": "^4.3.2"
-  },
-  "type": "module"
+    "@tailwindcss/forms": "^0.4.0",
+    "@tailwindcss/typography": "^0.5.2",
+    "autoprefixer": "^10.4.2",
+    "browser-sync": "^2.27.7",
+    "concurrently": "^7.0.0",
+    "cssnano": "^5.0.17",
+    "postcss": "^8.4.7",
+    "postcss-cli": "^9.1.0",
+    "prettier": "^2.5.1",
+    "prettier-plugin-tailwindcss": "^0.1.8",
+    "tailwindcss": "^3.0.23"
+  }
 }
