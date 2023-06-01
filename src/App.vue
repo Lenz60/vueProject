@@ -8,11 +8,12 @@ export default {
   },
   data(){
     return{
-      title: 'This is Vue',
-      foo: 'This is text from vue',
-      header: 'This is a new header passed',
-      text: 'On the other hand social economic development allows to appreciate the value of further ways of development.',
-      showModal: false
+      title: "This is Vue",
+      foo: "This is text from vue",
+      header: "🐟",
+      text: "It should be noted that the implementation of the planned tasks plays an important part in the formation of the position that is taken by the participants in relation to tasks. There's no doubt that social economic development allows to complete important implementation tasks of the tasks given by the society and government. There's no doubt that the implementation of the planned tasks directly depends on the position that is taken by the participants in relation to tasks.",
+      showModal1:false,
+      showModal2:false,
 
     }
   },
@@ -29,8 +30,11 @@ export default {
     handleReset(){
       $("input:text").val("")
     },
-    toggleModal(){
-      this.showModal = !this.showModal
+    toggleModal1(){
+      this.showModal1 = !this.showModal1
+    },
+    toggleModal2(){
+      this.showModal2 = !this.showModal2
     }
   }
 }
@@ -44,12 +48,31 @@ export default {
       <button class="ml-4 text-sm bg-green-700 p-2 rounded-md hover:bg-green-600 text-white" @click="handleClick">Click me</button>
       <button class="ml-4 text-sm bg-red-700 p-2 rounded-md hover:bg-red-600 text-white" @click="handleReset">Reset</button>
     </div>
-    <button @click="toggleModal" class="ml-4 mt-8 text-sm bg-blue-700 p-2 rounded-md hover:bg-blue-600 text-white">Show Modal</button>
+  </div>
+  <div class="flex items-center justify-center">
+    <button @click="toggleModal1" class="ml-4 mt-8 text-sm bg-blue-700 p-2 rounded-md hover:bg-blue-600 text-white">Show Modal1 </button>
+    <button @click="toggleModal2" class="ml-4 mt-8 text-sm bg-blue-700 p-2 rounded-md hover:bg-blue-600 text-white">Show Modal2</button>
   </div>
   <!-- ? Prop of the modal -->
-  <div v-if="showModal">
-    <Modal :header="header" :text="text" theme="sale" @close="toggleModal()" />
+  <div v-if="showModal1">
+    <Modal  theme="sale" @close="toggleModal1()">
+      <template v-slot:links>
+        <a class="mr-4" href="google.com"> this link is google</a>
+        <a href="google.com"> this link is youtube</a>
+      </template>
+      <h1>🐟</h1>
+      <p>The significance of such problems is so obvious that further development of various forms of activity allows to complete important implementation tasks of the tasks given by the society and government. However, one should not forget the understanding of nature of resource saving technologies allows to appreciate the value of economic practicability of decisions made. Thus the bounds and place of personnel training directly depends on forms of influence.</p>
+      <br>
+    </Modal>
   </div>
+
+  <div v-if="showModal2">
+    <Modal @close="toggleModal2()">
+      <h1>🌱</h1>
+      <p>However, one should not forget the bounds and place of personnel training requires the clarification of the step-by-step consistent development of the society. On the other hand the understanding of nature of resource saving technologies allows to appreciate the value of the step-by-step consistent development of the society. It should be noted that constant quantitive growth and the scope of our activity contributes to the preparing and implementation of the step-by-step consistent development of the society.</p>
+    </Modal>
+  </div>
+
 </template>
 
 <style scoped>
